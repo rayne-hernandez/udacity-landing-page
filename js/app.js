@@ -22,6 +22,8 @@
  * Define Global Variables
  * 
 */
+const sections = document.querySelectorAll("main section");
+const navbarList = document.querySelector("#navbar__list");
 
 
 /**
@@ -29,6 +31,18 @@
  * Start Helper Functions
  * 
 */
+function populateNavbar() {
+    const liFrag = document.createDocumentFragment();
+
+    for (const section of sections) {
+        const dataNav = section.getAttribute("data-nav");
+        const li = document.createElement("li");
+        li.textContent = dataNav;
+        liFrag.appendChild(li);
+    }
+
+    navbarList.appendChild(liFrag);
+}
 
 
 
@@ -39,6 +53,7 @@
 */
 
 // build the nav
+populateNavbar();
 
 
 // Add class 'active' to section when near top of viewport

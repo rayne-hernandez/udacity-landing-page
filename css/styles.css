@@ -72,6 +72,14 @@ section {
 
 .navbar__menu li {
     display: inline-block;
+    padding: 1em;
+    color: black;
+}
+
+.navbar__menu li:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 .navbar__menu .menu__link {
