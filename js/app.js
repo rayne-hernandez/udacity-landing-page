@@ -25,7 +25,6 @@
 const sections = document.querySelectorAll("main section");
 const navbarList = document.querySelector("#navbar__list");
 
-
 /**
  * End Global Variables
  * Start Helper Functions
@@ -68,8 +67,6 @@ function populateNavbar() {
     navbarList.appendChild(liFrag);
 }
 
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -92,7 +89,16 @@ populateNavbar();
  * 
 */
 
-// Build menu 
+// Build menu
+function hamburgerMenuDropdown() {
+    const navbarList = document.querySelectorAll("#navbar__list li:not(.hamburger)");
+    for (const navbarLink of navbarList) {
+        navbarLink.classList.toggle("responsive");
+    };
+}
+
+const hamburgerIcon = document.querySelector("#navbar__list li.hamburger");
+hamburgerIcon.addEventListener("click", hamburgerMenuDropdown);
 
 // Scroll to section on link click
 
