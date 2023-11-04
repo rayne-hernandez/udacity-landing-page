@@ -10,6 +10,10 @@
 
 
 /* ---- Base Rules ---- */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
@@ -72,8 +76,12 @@ section {
 
 .navbar__menu li {
     display: inline-block;
-    padding: 1em;
-    color: black;
+    transition: ease 0.3s all;
+}
+
+.navbar__menu li:hover {
+    background-color: black;
+    cursor: pointer;
 }
 
 .navbar__menu li.hamburger {
@@ -83,6 +91,17 @@ section {
     height: 52px;
     vertical-align: top;
     display: none;
+}
+
+.navbar__menu li a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 1em;
+}
+
+.navbar__menu li:hover a {
+    color: white;
 }
 
 @media only screen and (max-width: 850px) {
@@ -99,7 +118,6 @@ section {
     }
 }
 
-
 .navbar__menu li span.bar {
     display: block;
     width: 25px;
@@ -108,21 +126,16 @@ section {
     background-color: black;
 }
 
-.navbar__menu li span.bar.first {
-    margin-top: 15px;
-}
-
-.navbar__menu li:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
-
 .navbar__menu li:hover span.bar {
     background-color: white;
 }
 
-.navbar__menu .menu__link {
+.navbar__menu li span.bar.first {
+    margin-top: 15px;
+}
+
+
+/* .navbar__menu .menu__link {
     display: block;
     padding: 1em;
     font-weight: bold;
@@ -134,7 +147,7 @@ section {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
-}
+} */
 
 /* Header Styles */
 .page__header {

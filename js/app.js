@@ -58,12 +58,18 @@ function populateNavbar() {
 
     // Create NavLink for each Section
     for (const section of sections) {
-        const dataNav = section.getAttribute("data-nav");
+        // extract link info from sections
+        const navLabel = section.getAttribute("data-nav");
+        const navLink = section.getAttribute("id");
+        // create new anchor inside new list element
         const li = document.createElement("li");
-        li.textContent = dataNav;
+        const a = document.createElement("a");
+        a.setAttribute("href", `#${navLink}`);
+        a.textContent = navLabel;
+        li.appendChild(a);
+        // append list element to document frag
         liFrag.appendChild(li);
     }
-
     navbarList.appendChild(liFrag);
 }
 
