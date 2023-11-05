@@ -49,6 +49,15 @@ function createHamburgerIcon() {
     return li;
 }
 
+function hamburgerMenuDropdown() {
+    // select navbar buttons except hamburger icon
+    const navbarList = document.querySelectorAll("#navbar__list li:not(.hamburger)");
+    // set class to change layout
+    for (const navbarLink of navbarList) {
+        navbarLink.classList.toggle("responsive");
+    };
+}
+
 function populateNavbar() {
     const liFrag = document.createDocumentFragment();
 
@@ -73,6 +82,20 @@ function populateNavbar() {
     navbarList.appendChild(liFrag);
 }
 
+function detectActiveSection() {
+    for (const section of sections) {
+        // set sections in the viewport to active
+        const rect = section.getBoundingClientRect();
+        if (rect.top > 0 && rect.bottom < window.innerHeight) {
+            section.classList.add("active");
+        } else {
+            section.classList.remove("active");
+        }
+    }
+}
+
+
+
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -82,9 +105,8 @@ function populateNavbar() {
 // build the nav
 populateNavbar();
 
-
 // Add class 'active' to section when near top of viewport
-
+window.addEventListener("scroll", detectActiveSection);
 
 // Scroll to anchor ID using scrollTO event
 
@@ -96,13 +118,6 @@ populateNavbar();
 */
 
 // Build menu
-function hamburgerMenuDropdown() {
-    const navbarList = document.querySelectorAll("#navbar__list li:not(.hamburger)");
-    for (const navbarLink of navbarList) {
-        navbarLink.classList.toggle("responsive");
-    };
-}
-
 const hamburgerIcon = document.querySelector("#navbar__list li.hamburger");
 hamburgerIcon.addEventListener("click", hamburgerMenuDropdown);
 

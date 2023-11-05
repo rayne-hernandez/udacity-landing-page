@@ -80,7 +80,7 @@ section {
 }
 
 .navbar__menu li:hover {
-    background-color: black;
+    background-color: #333;
     cursor: pointer;
 }
 
@@ -123,7 +123,7 @@ section {
     width: 25px;
     height: 4px;
     margin: 5px auto;
-    background-color: black;
+    background-color: #333;
 }
 
 .navbar__menu li:hover span.bar {
