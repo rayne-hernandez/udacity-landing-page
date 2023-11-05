@@ -24,6 +24,7 @@
 */
 const sections = document.querySelectorAll("main section");
 const navbarList = document.querySelector("#navbar__list");
+const pageHeader = document.querySelector(".page__header");
 
 /**
  * End Global Variables
@@ -94,8 +95,6 @@ function detectActiveSection() {
     }
 }
 
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -106,7 +105,6 @@ function detectActiveSection() {
 populateNavbar();
 
 // Add class 'active' to section when near top of viewport
-window.addEventListener("scroll", detectActiveSection);
 
 // Scroll to anchor ID using scrollTO event
 
@@ -124,5 +122,17 @@ hamburgerIcon.addEventListener("click", hamburgerMenuDropdown);
 // Scroll to section on link click
 
 // Set sections as active
+window.addEventListener("scroll", detectActiveSection);
+
+function hideNavOnScroll() {
+    const pageHeaderHeight = pageHeader.offsetHeight;
+    if (window.scrollY > pageHeaderHeight) {
+        pageHeader.style.top = `${-pageHeaderHeight}px`;
+    } else {
+        pageHeader.style.top = "0";
+    }
+}
+
+window.addEventListener("scroll", hideNavOnScroll);
 
 
