@@ -57,8 +57,31 @@ function hamburgerMenuDropdown() {
     for (const navbarLink of navbarList) {
         navbarLink.classList.toggle("responsive");
     };
-}
+};
 
+function hideNavOnScroll() {
+    const pageHeaderHeight = pageHeader.offsetHeight;
+    if (window.scrollY > pageHeaderHeight) {
+        pageHeader.style.top = `${-pageHeaderHeight}px`;
+    } else {
+        pageHeader.style.top = "0";
+    }
+};
+
+function showNavOnMouseOver(event) {
+    const pageHeaderHeight = pageHeader.offsetHeight;
+    if (event.clientY < pageHeaderHeight) {
+        pageHeader.style.top = "0";
+    }
+};
+
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ * 
+*/
+
+// build the nav
 function populateNavbar() {
     const liFrag = document.createDocumentFragment();
 
@@ -81,8 +104,9 @@ function populateNavbar() {
         liFrag.appendChild(li);
     }
     navbarList.appendChild(liFrag);
-}
+};
 
+// Add class 'active' to section when near top of viewport
 function detectActiveSection() {
     for (const section of sections) {
         // set sections in the viewport to active
@@ -93,29 +117,19 @@ function detectActiveSection() {
             section.classList.remove("active");
         }
     }
-}
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
-populateNavbar();
-
-// Add class 'active' to section when near top of viewport
+};
 
 // Scroll to anchor ID using scrollTO event
-
 
 /**
  * End Main Functions
  * Begin Events
- * 
+ *
 */
-
 // Build menu
+populateNavbar();
+
+// Show dropdown menu when hamburger icon is clicked
 const hamburgerIcon = document.querySelector("#navbar__list li.hamburger");
 hamburgerIcon.addEventListener("click", hamburgerMenuDropdown);
 
@@ -124,15 +138,8 @@ hamburgerIcon.addEventListener("click", hamburgerMenuDropdown);
 // Set sections as active
 window.addEventListener("scroll", detectActiveSection);
 
-function hideNavOnScroll() {
-    const pageHeaderHeight = pageHeader.offsetHeight;
-    if (window.scrollY > pageHeaderHeight) {
-        pageHeader.style.top = `${-pageHeaderHeight}px`;
-    } else {
-        pageHeader.style.top = "0";
-    }
-}
-
+// Hide navbar when scrolling below navbar
 window.addEventListener("scroll", hideNavOnScroll);
 
-
+// Show navbar when mouse moves to the top
+window.addEventListener("mousemove", showNavOnMouseOver);
