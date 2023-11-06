@@ -11,6 +11,7 @@
 
 /* ---- Base Rules ---- */
 html {
+    /* sets smooth scrolling when navbar is clicked */
     scroll-behavior: smooth;
 }
 
@@ -62,6 +63,7 @@ main {
 section {
     position: relative;
     min-height: 80vh;
+    /* Smooth animation for active sections*/
     transition: padding-left 0.3s linear, padding-right 0.3s linear;
 }
 
@@ -77,6 +79,7 @@ section {
 
 .navbar__menu li {
     display: inline-block;
+    /* smooth background color change on hover */
     transition: ease 0.3s all;
 }
 
@@ -85,16 +88,21 @@ section {
     cursor: pointer;
 }
 
+/* Create a hamburger icon for the navbar */
 .navbar__menu li.hamburger {
     padding: 0;
     margin: 0;
+    /* hardcodes the height to match other navlinks */
     width: 52px;
     height: 52px;
+    /* aligns hambgurger icon with rest of navlinks */
     vertical-align: top;
+    /* hamburger icon not visible until screen is small */
     display: none;
 }
 
 .navbar__menu li a {
+    /* block makes the anchor the same size as its container list item */
     display: block;
     text-decoration: none;
     color: black;
@@ -105,20 +113,28 @@ section {
     color: white;
 }
 
+/* If the screen is small, hide the navlinks and show a hamburger icon on the
+right corner. If the hamburger icon is pressed, show the navlinks in a dropdown
+menu */
 @media only screen and (max-width: 850px) {
+    /* hide navlinks */
     .navbar__menu li:not(.hamburger) {
         display: none;
     }
 
+    /* format navlinks as a dropdown menu and make it visible if "responsive"
+    class is added when hamburger is clicked */
     .navbar__menu li.responsive:not(.hamburger) {
         display: block;
     }
 
+    /* make the hamburger icon visible */
     .navbar__menu li.hamburger {
         display: inline-block;
     }
 }
 
+/* formatting for the hamburger icon vertical bars */
 .navbar__menu li span.bar {
     display: block;
     width: 25px;
@@ -135,20 +151,6 @@ section {
     margin-top: 15px;
 }
 
-/* .navbar__menu .menu__link {
-    display: block;
-    padding: 1em;
-    font-weight: bold;
-    text-decoration: none;
-    color: #000;
-}
-
-.navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
-    transition: ease 0.3s all;
-} */
-
 /* Header Styles */
 .page__header {
     background: #fff;
@@ -156,6 +158,7 @@ section {
     top: 0;
     width: 100%;
     z-index: 5;
+    /* smooth animation for navbar hide during scrolldown */
     transition: top 0.3s;
 }
 
@@ -257,10 +260,12 @@ section:nth-of-type(3n + 1) .landing__container::after {
 section.active {
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    /* Animate padding when section is active */
     padding-left: 2em;
 }
 
 section.active:nth-of-type(even) {
+    /* animate padding when section is active */
     padding-right: 2em;
 }
 
