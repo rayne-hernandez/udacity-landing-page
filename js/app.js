@@ -31,6 +31,10 @@ const pageHeader = document.querySelector(".page__header");
  * Start Helper Functions
  * 
 */
+
+/**
+ * @description Creates a hamburber menu icon for the navbar as a list item
+ */
 function createHamburgerIcon() {
     // create list element container
     const li = document.createElement("li");
@@ -50,6 +54,11 @@ function createHamburgerIcon() {
     return li;
 }
 
+
+/**
+ * @description Causes a dropdown menu to appear containing navlinks if the
+ * hamburger icon is clicked
+ */
 function hamburgerMenuDropdown() {
     // select navbar buttons except hamburger icon
     const navbarList = document.querySelectorAll("#navbar__list li:not(.hamburger)");
@@ -59,8 +68,16 @@ function hamburgerMenuDropdown() {
     };
 };
 
+/**
+ * @description Hides the navbar when the user scrolls down past the navbar
+ * height
+ * */
 function hideNavOnScroll() {
+    // Get nabvar height
     const pageHeaderHeight = pageHeader.offsetHeight;
+
+    // If scrolled past the navbar height and the top of the viewport, then
+    // hide the navbar
     if (window.scrollY > pageHeaderHeight) {
         pageHeader.style.top = `${-pageHeaderHeight}px`;
     } else {
@@ -68,8 +85,15 @@ function hideNavOnScroll() {
     }
 };
 
+/**
+ * @descripton Shows the navbar when the user moves their mouse to the top of
+ * the viewport
+ * @param {MouseEvent} event The mousemove event triggering this function
+ */
 function showNavOnMouseOver(event) {
     const pageHeaderHeight = pageHeader.offsetHeight;
+
+    // If mouse moves to top, then show the navbar
     if (event.clientY < pageHeaderHeight) {
         pageHeader.style.top = "0";
     }
@@ -82,6 +106,10 @@ function showNavOnMouseOver(event) {
 */
 
 // build the nav
+
+/**
+ * @descripton Populates the navbar with a navlink for every secton on the page
+ */
 function populateNavbar() {
     const liFrag = document.createDocumentFragment();
 
@@ -107,6 +135,11 @@ function populateNavbar() {
 };
 
 // Add class 'active' to section when near top of viewport
+
+/**
+ * @description Event listenter detects if a section is within the viewport. If
+ * within the viewport the section class is set to active.
+ */
 function detectActiveSection() {
     for (const section of sections) {
         // set sections in the viewport to active
