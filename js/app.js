@@ -69,37 +69,6 @@ function hamburgerMenuDropdown() {
 }
 
 /**
- * @description Hides the navbar when the user scrolls down past the navbar
- * height
- * */
-function hideNavOnScroll() {
-    // Get nabvar height
-    const pageHeaderHeight = pageHeader.offsetHeight;
-
-    // If scrolled past the navbar height and the top of the viewport, then
-    // hide the navbar
-    if (window.scrollY > pageHeaderHeight) {
-        pageHeader.style.top = `${-pageHeaderHeight}px`;
-    } else {
-        pageHeader.style.top = "0";
-    }
-}
-
-/**
- * @descripton Shows the navbar when the user moves their mouse to the top of
- * the viewport
- * @param {MouseEvent} event The mousemove event triggering this function
- */
-function showNavOnMouseOver(event) {
-    const pageHeaderHeight = pageHeader.offsetHeight;
-
-    // If mouse moves to top, then show the navbar
-    if (event.clientY < pageHeaderHeight) {
-        pageHeader.style.top = "0";
-    }
-}
-
-/**
  * End Helper Functions
  * Begin Main Functions
  * 
@@ -200,9 +169,3 @@ window.addEventListener("scroll", detectActiveSection);
 
 // Set navlinks as active
 window.addEventListener("scroll", setActiveNavlink);
-
-// Hide navbar when scrolling below navbar
-window.addEventListener("scroll", hideNavOnScroll);
-
-// Show navbar when mouse moves to the top
-window.addEventListener("mousemove", showNavOnMouseOver);
