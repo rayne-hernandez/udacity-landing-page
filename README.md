@@ -1,9 +1,13 @@
 # Landing Page Project
 
-## Instructions
+# Summary
+A mock landing page with multiple sections built using just HTML, CSS and
+Javascript. This project includes dynamic features such as a navbar and section
+animations. When a section comes into the viewport, a background animation
+starts. The navbar is also dynamically generated according to the number
+of sections on the webpage. The navlinks will collapse into a dropdown menu if
+the screen is small. The navbar will also automatically hide when the user
+scrolls down or reappear if the over moused over the top of the page.
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+## Usage
+Just open `index.html` from any browser
