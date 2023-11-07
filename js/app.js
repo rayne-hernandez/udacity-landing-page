@@ -65,8 +65,8 @@ function hamburgerMenuDropdown() {
     // set class to change layout
     for (const navbarLink of navbarList) {
         navbarLink.classList.toggle("dropdown");
-    };
-};
+    }
+}
 
 /**
  * @description Hides the navbar when the user scrolls down past the navbar
@@ -83,7 +83,7 @@ function hideNavOnScroll() {
     } else {
         pageHeader.style.top = "0";
     }
-};
+}
 
 /**
  * @descripton Shows the navbar when the user moves their mouse to the top of
@@ -97,7 +97,7 @@ function showNavOnMouseOver(event) {
     if (event.clientY < pageHeaderHeight) {
         pageHeader.style.top = "0";
     }
-};
+}
 
 /**
  * End Helper Functions
@@ -136,10 +136,27 @@ function populateNavbar() {
         }
     );
     navbarList.appendChild(liFrag);
-};
+}
 
 // Add class 'active' to section when near top of viewport
+/**
+ * @description Event listener detects if a section is within the viewport. If
+ * within the viewport then the section class is set to active. The
+ * corresponding navbar link is also higlighted.
+ */
+function detectActiveSection() {
+    for (const section of sections) {
+        // set sections in the viewport to active
+        const rect = section.getBoundingClientRect();
+        if (rect.top > 0 && rect.bottom < window.innerHeight) {
+            section.classList.add("active");
+        } else {
+            section.classList.remove("active");
+        }
+    }
+}
 
+// Add class 'active' to navlink when section is in viewport
 /**
  * @description Event listener sets the navlink corresponding to the active
  * section to active as well.
@@ -159,25 +176,8 @@ function setActiveNavlink() {
         } else {
             elem.classList.remove("active");
         }
-    })
+    });
 }
-
-/**
- * @description Event listener detects if a section is within the viewport. If
- * within the viewport then the section class is set to active. The
- * corresponding navbar link is also higlighted.
- */
-function detectActiveSection() {
-    for (const section of sections) {
-        // set sections in the viewport to active
-        const rect = section.getBoundingClientRect();
-        if (rect.top > 0 && rect.bottom < window.innerHeight) {
-            section.classList.add("active");
-        } else {
-            section.classList.remove("active");
-        }
-    }
-};
 
 // Scroll to anchor ID using scrollTO event
 
