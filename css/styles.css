@@ -88,6 +88,10 @@ section {
     cursor: pointer;
 }
 
+.navbar__menu li.active {
+    background-color: black;
+}
+
 /* Create a hamburger icon for the navbar */
 .navbar__menu li.hamburger {
     padding: 0;
@@ -113,6 +117,10 @@ section {
     color: white;
 }
 
+.navbar__menu li.active a {
+    color: white;
+}
+
 /* If the screen is small, hide the navlinks and show a hamburger icon on the
 right corner. If the hamburger icon is pressed, show the navlinks in a dropdown
 menu */
@@ -122,9 +130,9 @@ menu */
         display: none;
     }
 
-    /* format navlinks as a dropdown menu and make it visible if "responsive"
+    /* format navlinks as a dropdown menu and make it visible if "dropdown"
     class is added when hamburger is clicked */
-    .navbar__menu li.responsive:not(.hamburger) {
+    .navbar__menu li.dropdown:not(.hamburger) {
         display: block;
     }
 

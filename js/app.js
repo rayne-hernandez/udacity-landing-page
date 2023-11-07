@@ -64,7 +64,7 @@ function hamburgerMenuDropdown() {
     const navbarList = document.querySelectorAll("#navbar__list li:not(.hamburger)");
     // set class to change layout
     for (const navbarLink of navbarList) {
-        navbarLink.classList.toggle("responsive");
+        navbarLink.classList.toggle("dropdown");
     };
 };
 
@@ -118,27 +118,54 @@ function populateNavbar() {
     liFrag.appendChild(li);
 
     // Create NavLink for each Section
-    for (const section of sections) {
-        // extract link info from sections
-        const navLabel = section.getAttribute("data-nav");
-        const navLink = section.getAttribute("id");
-        // create new anchor inside new list element
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.setAttribute("href", `#${navLink}`);
-        a.textContent = navLabel;
-        li.appendChild(a);
-        // append list element to document frag
-        liFrag.appendChild(li);
-    }
+    // for (const section of sections) {
+    sections.forEach(
+        (section, idx) => {
+            // extract link info from sections
+            const navLabel = section.getAttribute("data-nav");
+            const navLink = section.getAttribute("id");
+            // create new anchor inside new list element
+            const li = document.createElement("li");
+            li.setAttribute("id", `navlink${idx + 1}`);
+            const a = document.createElement("a");
+            a.setAttribute("href", `#${navLink}`);
+            a.textContent = navLabel;
+            li.appendChild(a);
+            // append list element to document frag
+            liFrag.appendChild(li);
+        }
+    );
     navbarList.appendChild(liFrag);
 };
 
 // Add class 'active' to section when near top of viewport
 
 /**
- * @description Event listenter detects if a section is within the viewport. If
- * within the viewport the section class is set to active.
+ * @description Event listener sets the navlink corresponding to the active
+ * section to active as well.
+ */
+function setActiveNavlink() {
+    // find the active sectionId
+    const activeSection = document.querySelector("main section.active");
+    const activeSectionId = activeSection.getAttribute("id");
+    // get corresponding navlinkId
+    const navlinkId = "navlink" + activeSectionId.replace("section", "");
+    // get list of navlinks ignoring the hamburger icon
+    const navlinkList = navbarList.querySelectorAll("li:not(.hamburger)");
+    // If section is active, then set its navlink to active
+    navlinkList.forEach((elem) => {
+        if (elem.getAttribute("id") == navlinkId) {
+            elem.classList.add("active");
+        } else {
+            elem.classList.remove("active");
+        }
+    })
+}
+
+/**
+ * @description Event listener detects if a section is within the viewport. If
+ * within the viewport then the section class is set to active. The
+ * corresponding navbar link is also higlighted.
  */
 function detectActiveSection() {
     for (const section of sections) {
@@ -170,6 +197,9 @@ hamburgerIcon.addEventListener("click", hamburgerMenuDropdown);
 
 // Set sections as active
 window.addEventListener("scroll", detectActiveSection);
+
+// Set navlinks as active
+window.addEventListener("scroll", setActiveNavlink);
 
 // Hide navbar when scrolling below navbar
 window.addEventListener("scroll", hideNavOnScroll);
