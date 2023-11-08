@@ -54,7 +54,6 @@ function createHamburgerIcon() {
     return li;
 }
 
-
 /**
  * @description Causes a dropdown menu to appear containing navlinks if the
  * hamburger icon is clicked
@@ -75,7 +74,6 @@ function hamburgerMenuDropdown() {
 */
 
 // build the nav
-
 /**
  * @descripton Populates the navbar with a navlink for every secton on the page
  */
@@ -116,7 +114,9 @@ function detectActiveSection() {
     for (const section of sections) {
         // set sections in the viewport to active
         const rect = section.getBoundingClientRect();
-        if (rect.top > 0 && rect.bottom < window.innerHeight) {
+        const extraPadding = 10;
+        if (rect.top > -extraPadding &&
+            rect.bottom < window.innerHeight + extraPadding) {
             section.classList.add("active");
         } else {
             section.classList.remove("active");
@@ -154,6 +154,22 @@ function setActiveNavlink() {
 }
 
 // Scroll to anchor ID using scrollTO event
+/**
+ * @description Event listener that scrolls to an appropriate section when a
+ * navlink is clicked
+ * @param {MouseEvent} event The MouseEvent that is triggered when a navlink is
+ * clicked
+ */
+function scrollToSectionOnNavlinkClick(event) {
+    const target = event.target;
+
+    if (target.tagName == "A") {
+        event.preventDefault();
+        const href = target.getAttribute("href");
+        const section = document.querySelector(href);
+        section.scrollIntoView({"behavior": "smooth"});
+    }
+}
 
 /**
  * End Main Functions
@@ -168,6 +184,7 @@ const hamburgerIcon = document.querySelector("#navbar__list li.hamburger");
 hamburgerIcon.addEventListener("click", hamburgerMenuDropdown);
 
 // Scroll to section on link click
+navbarList.addEventListener("click", scrollToSectionOnNavlinkClick);
 
 // Set sections as active
 window.addEventListener("scroll", detectActiveSection);
