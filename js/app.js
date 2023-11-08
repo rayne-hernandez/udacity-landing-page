@@ -110,8 +110,7 @@ function populateNavbar() {
 // Add class 'active' to section when near top of viewport
 /**
  * @description Event listener detects if a section is within the viewport. If
- * within the viewport then the section class is set to active. The
- * corresponding navbar link is also higlighted.
+ * within the viewport then the section class is set to active.
  */
 function detectActiveSection() {
     for (const section of sections) {
@@ -133,6 +132,12 @@ function detectActiveSection() {
 function setActiveNavlink() {
     // find the active sectionId
     const activeSection = document.querySelector("main section.active");
+
+    // skip if no active section
+    if (!activeSection) {
+        return
+    }
+
     const activeSectionId = activeSection.getAttribute("id");
     // get corresponding navlinkId
     const navlinkId = "navlink" + activeSectionId.replace("section", "");
